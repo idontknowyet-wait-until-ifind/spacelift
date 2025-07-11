@@ -13,7 +13,7 @@ jobs:
 
       - name: Trigger Spacelift Stack
         env:
-          SPACELIFT_API_KEY_ENDPOINT: https://<your-org>.app.spacelift.io
+          SPACELIFT_API_KEY_ENDPOINT: https://shilu-new.app.spacelift.io/
           SPACELIFT_API_KEY_ID: ${{ secrets.SPACELIFT_API_KEY_ID }}
           SPACELIFT_API_KEY_SECRET: ${{ secrets.SPACELIFT_API_KEY_SECRET }}
         run: |
