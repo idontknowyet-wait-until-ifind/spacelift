@@ -14,11 +14,10 @@ jobs:
         uses: spacelift-io/setup-spacectl@main
       
       - name: Trigger run
+        env:
+          SPACELIFT_API_KEY_ENDPOINT: https://shilu-new.app.spacelift.io
+          SPACELIFT_API_KEY_ID: ${{ secrets.SPACELIFT_KEY_ID }}
+          SPACELIFT_API_KEY_SECRET: ${{ secrets.SPACELIFT_KEY_SECRET }}
         run: |
-          spacectl profile login --non-interactive \
-            --endpoint https://shilu-new.app.spacelift.io \
-            --api-key-id ${{ secrets.SPACELIFT_API_KEY_ID }} \
-            --api-key-secret ${{ secrets.SPACELIFT_API_KEY_SECRET }}
-      
           spacectl stack run --id new-demo \
-            --message "Triggered from GitHub Actions on ${{ github.sha }}"
+            --message "Triggered from GitHub Actions on $GITHUB_SHA"
