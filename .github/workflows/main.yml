@@ -11,11 +11,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Install spacectl
-        uses: spacelift-io/setup-spacectl@main
-      
-      - name: Trigger run
+        uses: spacelift-io/setup-spacectl@v1
+    
+      - name: Deploy infrastructure
         env:
-          SPACELIFT_API_KEY_ENDPOINT: https://shilu-new.app.spacelift.io
-          SPACELIFT_API_KEY_ID: ${{ secrets.SPACELIFT_KEY_ID }}
-          SPACELIFT_API_KEY_SECRET: ${{ secrets.SPACELIFT_KEY_SECRET }}
+          SPACELIFT_API_KEY_ENDPOINT: https://mycorp.app.spacelift.io
+          SPACELIFT_API_KEY_ID: ${{ secrets.SPACELIFT_API_KEY_ID }}
+          SPACELIFT_API_KEY_SECRET: ${{ secrets.SPACELIFT_API_KEY_SECRET }}
         run: spacectl stack deploy --id new-demo
