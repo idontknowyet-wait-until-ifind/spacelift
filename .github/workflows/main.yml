@@ -19,5 +19,5 @@ jobs:
           SPACELIFT_API_KEY_ID: ${{ secrets.SPACELIFT_KEY_ID }}
           SPACELIFT_API_KEY_SECRET: ${{ secrets.SPACELIFT_KEY_SECRET }}
         run: |
-          spacectl stack run --id new-demo \
-            --message "Triggered from GitHub Actions on $GITHUB_SHA"
+          spacectl stack run new-demo \
+          --message "Triggered from GitHub Actions on $GITHUB_SHA"
