@@ -18,6 +18,4 @@ jobs:
           SPACELIFT_API_KEY_ENDPOINT: https://shilu-new.app.spacelift.io
           SPACELIFT_API_KEY_ID: ${{ secrets.SPACELIFT_KEY_ID }}
           SPACELIFT_API_KEY_SECRET: ${{ secrets.SPACELIFT_KEY_SECRET }}
-        run: |
-          spacectl stack run new-demo \
-          --message "Triggered from GitHub Actions on $GITHUB_SHA"
+        run: spacectl stack deploy --id new-demo
