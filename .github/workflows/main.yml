@@ -1,21 +1,20 @@
-name: Trigger Spacelift
-
+name: Deploy Spacelift Stack
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
 
 jobs:
-  trigger-spacelift:
+  deploy:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
+
       - name: Install spacectl
         uses: spacelift-io/setup-spacectl@v1
-    
-      - name: Deploy infrastructure
+
+      - name: Trigger Spacelift Stack
         env:
-          SPACELIFT_API_KEY_ENDPOINT: https://mycorp.app.spacelift.io
+          SPACELIFT_API_KEY_ENDPOINT: https://<your-org>.app.spacelift.io
           SPACELIFT_API_KEY_ID: ${{ secrets.SPACELIFT_API_KEY_ID }}
           SPACELIFT_API_KEY_SECRET: ${{ secrets.SPACELIFT_API_KEY_SECRET }}
-        run: spacectl stack deploy --id new-demo
+        run: |
+          spacectl stack deploy --id new-demo
