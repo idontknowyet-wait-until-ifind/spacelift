@@ -1,0 +1,23 @@
+name: Trigger Spacelift
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  trigger-spacelift:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Spacelift run
+        run: |
+          curl -s -X POST https://app.spacelift.io/graphql \
+            -H "Authorization: Bearer ${{ secrets.SPACELIFT_API_KEY }}" \
+            -H "Content-Type: application/json" \
+            -d '{
+              "query": "mutation($stack: ID!) { stack(id: $stack) { triggerRun(message: \"Triggered from GitHub Action on commit '${{ github.sha }}'\") { id } } }",
+              "variables": { "stack": "'"$STACK_ID"'" }
+            }'
+        env:
+          STACK_ID: new-demo
